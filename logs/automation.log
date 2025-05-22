@@ -1,0 +1,4 @@
+2025-05-142 13:00:01 [main] INFO com.ui.listeners.MyTestListener Test suite started 
+2025-05-142 13:00:05 [main] INFO com.ui.listeners.MyTestListener loginTestCopy1 
+2025-05-142 13:00:06 [main] INFO com.ui.listeners.MyTestListener loginTestCopy1 PASSED 
+2025-05-142 13:00:06 [main] INFO com.ui.listeners.MyTestListener Test suite completed 

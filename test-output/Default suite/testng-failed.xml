@@ -5,8 +5,8 @@
     <classes>
       <class name="com.ui.test.LoginTest">
         <methods>
-          <include name="loginTest"/>
           <include name="setup"/>
+          <include name="loginTestCopy1"/>
         </methods>
       </class> <!-- com.ui.test.LoginTest -->
     </classes>
