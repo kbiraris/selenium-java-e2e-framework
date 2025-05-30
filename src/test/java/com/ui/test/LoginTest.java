@@ -25,6 +25,8 @@ public class LoginTest extends TestBase {
 	@Test(description = "verifies with the valid user is able to login ", groups = { "e2e",
 			"sanity" }, retryAnalyzer = com.ui.listeners.MyRetryAnalyzer.class)
 	public void loginTestCopy1() {
+		System.out.println("Start test");
 		assertEquals(homePage.goToLoginPage().doLoginWith("kunaltest@test.com", "password").getUserName(), "Kunal B");
+		System.out.println("End test");
 	}
 }

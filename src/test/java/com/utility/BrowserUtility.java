@@ -10,16 +10,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 
 import com.constants.Browser;
 
 public abstract class BrowserUtility {
 
-	// private WebDriver driver;
 	private static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 
 	public WebDriver getDriver() {
@@ -31,22 +31,26 @@ public abstract class BrowserUtility {
 		this.driver.set(driver);
 	}
 
-	public BrowserUtility(String browserName) {
-		if (browserName.equalsIgnoreCase("chrome")) {
-			driver.set(new ChromeDriver());
-		} else if (browserName.equalsIgnoreCase("Edge")) {
-			driver.set(new EdgeDriver());
-		} else {
-			System.err.println("Invalid browser name");
-		}
-	}
-
-	public BrowserUtility(Browser browserName) {
+	public BrowserUtility(Browser browserName, boolean isHeadless) {
 		if (browserName == Browser.CHROME) {
-			driver.set(new ChromeDriver());
+			if (isHeadless) {
+				ChromeOptions options = new ChromeOptions();
+				options.addArguments("--headless");
+				options.addArguments("--windows-size=1920,1080");
+				driver.set(new ChromeDriver(options));
+			} else {
+				driver.set(new ChromeDriver());
+			}
+
 		} else if (browserName == Browser.EDGE) {
-			driver.set(new EdgeDriver());
-			;
+			if (isHeadless) {
+				EdgeOptions options = new EdgeOptions();
+				options.addArguments("--headless");
+				options.addArguments("disable-gpu");
+				driver.set(new EdgeDriver(options));
+			} else {
+				driver.set(new EdgeDriver());
+			}
 		} else {
 			System.err.println("Invalid browser name");
 		}
@@ -87,7 +91,7 @@ public abstract class BrowserUtility {
 			FileUtils.copyFile(screenshotData, screenshotFile);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}	
+		}
 		return path;
 	}
 }

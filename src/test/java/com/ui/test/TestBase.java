@@ -13,7 +13,7 @@ public class TestBase {
 	
 	@BeforeMethod(description = "Load the HomePage of the website")
 	public void setup() {
-		homePage = new HomePage(CHROME);
+		homePage = new HomePage(CHROME, true);
 	}
 	
 	public BrowserUtility getInstance() {
